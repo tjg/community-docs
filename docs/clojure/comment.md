@@ -6,36 +6,38 @@ level: easy
 author: tjg
 ---
 
-A comment tells Clojure to ignore some text. It can serve as
-documentation, or to "hide" some code from Clojure which you don't
-feel is ready to be executed.
+A comment tells Clojure to ignore some text or code. It can serve as
+explanation, or to "hide" code from Clojure which you don't wish to
+execute.
 
-Semicolons start comments.
+Semicolons are one way to start a comment.
 
 ```clojure
-;; This is a comment. Traditionally, people like to use 2 ;'s for
-;; comments which take up full lines.
+(+ 1 2)  ; This is a comment.
 
-(+ 1 2)  ; People usually use 1 ; for comments sharing a line with code.
+;; This is also a comment. For some reason, people like to use 2
+;; semicolons for comments which take up full lines; but it's not
+;; necessary.
 
 "But this ; won't start a comment, because it's in a string."
 ```
 
-You can also surround code in a `(comment)` block. The `comment`
-operator merely returns `nil`, no matter what code is inside.
+A `(comment)` block is another way to prevent code from being
+executed. The `comment` operator returns `nil` and doesn't cause code
+inside it to be executed.
 
 ```clojure
 (comment
   (System/exit 0))
 ```
 
-Finally, if you precede something with #_, Clojure acts like it never
-read it.
+Finally, if you precede one piece of code with #_, Clojure acts like
+it didn't actually read it.
 
 ```clojure
 [1 #_2 3]
 => [1 3]
 
-[1 #_(+ 1 2 3 4) 3]
+[1 #_(+ 2 2) 3]
 => [1 3]
 ```
